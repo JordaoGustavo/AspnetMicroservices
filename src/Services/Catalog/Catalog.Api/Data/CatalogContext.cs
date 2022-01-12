@@ -17,6 +17,7 @@ namespace Catalog.Api.Data
             var database = client.GetDatabase(databaseName);
 
             Products = database.GetCollection<Product>(collectionName);
+            CatalogContextSeed.SeedData(Products);
         }
     }
 }
