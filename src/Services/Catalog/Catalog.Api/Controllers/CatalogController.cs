@@ -1,4 +1,5 @@
 ﻿using Catalog.Api.Entities;
+using Catalog.Api.Infrastructure;
 using Catalog.Api.Infrastructure.Interfaces;
 using Catalog.Api.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace Catalog.Api.Controllers
         private readonly IProductRepository productRepository;
         private readonly ILoggerAdapter<Controller> logger;
 
-        public CatalogController(IProductRepository productRepository, ILoggerAdapter<Controller> logger)
+        public CatalogController(IProductRepository productRepository, ILogger<Controller> logger)
         {
             this.productRepository = productRepository;
-            this.logger = logger;
+            this.logger = new LoggerAdapter<Controller>(logger);
         }
 
         [HttpGet]
