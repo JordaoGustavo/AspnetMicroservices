@@ -14,7 +14,7 @@ namespace Basket.API.Repositories
             this.distributedCache = distributedCache ?? throw new ArgumentException(nameof(distributedCache));
         }
 
-        public async Task<ShoppingCart?> Get(string userName)
+        public async Task<ShoppingCart?> GetAsync(string userName)
         {
             var basket = await distributedCache.GetStringAsync(userName);
             
@@ -26,15 +26,15 @@ namespace Basket.API.Repositories
             return JsonConvert.DeserializeObject<ShoppingCart>(basket);  
         }
 
-        public async Task<ShoppingCart?> Update(ShoppingCart basket)
+        public async Task<ShoppingCart?> UpdateAsync(ShoppingCart basket)
         {
             var basketJson = JsonConvert.SerializeObject(basket);
             await distributedCache.SetStringAsync(basket.UserName, basketJson);
 
-            return await Get(basket.UserName);
+            return await GetAsync(basket.UserName);
         }
 
-        public async Task Delete(string userName)
+        public async Task DeleteAsync(string userName)
         {
             await distributedCache.RemoveAsync(userName);
         }
