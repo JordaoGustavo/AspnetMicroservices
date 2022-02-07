@@ -1,3 +1,4 @@
+using Discount.API.Extensions;
 using Discount.API.Repositories;
 using Discount.API.Repositories.Interfaces;
 
@@ -22,5 +23,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.MigrateDatabaseAsync<Program>();
 
 await app.RunAsync();
