@@ -7,7 +7,7 @@ services:
   basketdb:
     image: redis:alpine
 
-  dicountdb:
+  discountdb:
     image: postgres
 
   portainer:
@@ -32,4 +32,5 @@ volumes:
   mongo_data:
   portainer_data:
   postgres_data:
+  pgadmin_data:
 
