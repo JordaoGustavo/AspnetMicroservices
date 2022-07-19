@@ -30,6 +30,8 @@ builder.Services.AddMassTransit(c =>
     });
 });
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
